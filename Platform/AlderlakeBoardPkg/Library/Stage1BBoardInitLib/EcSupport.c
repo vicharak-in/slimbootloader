@@ -143,41 +143,46 @@ GetBoardIdFromSmbus (
   OUT UINT8          *PlatformId
   )
 {
-  UINT8                           BomId;
+  /* UINT8                           BomId; */
   UINT8                           BoardId;
-  IO_EXPANDER_INPUT_PORT0         SmbusInputPort0Info;
-  IO_EXPANDER_INPUT_PORT1         SmbusInputPort1Info;
-  EFI_STATUS                      Status0;
-  EFI_STATUS                      Status1;
+  /* IO_EXPANDER_INPUT_PORT0         SmbusInputPort0Info; */
+  /* IO_EXPANDER_INPUT_PORT1         SmbusInputPort1Info; */
+  /* EFI_STATUS                      Status0; */
+  /* EFI_STATUS                      Status1; */
 
-  Status0 = EFI_DEVICE_ERROR;
-  Status1 = EFI_DEVICE_ERROR;
+  /* Status0 = EFI_DEVICE_ERROR; */
+  /* Status1 = EFI_DEVICE_ERROR; */
 
-  SmbusInputPort0Info.InputPort0Raw = SmBusReadDataByte (SMBUS_LIB_ADDRESS(SMBUS_IO_EXPANDER_SLAVE_ADDRESS, SMBUS_IO_EXPANDER_INPUT_PORT0_CMD, 0, 0), &Status0);
-  SmbusInputPort1Info.InputPort1Raw = SmBusReadDataByte (SMBUS_LIB_ADDRESS(SMBUS_IO_EXPANDER_SLAVE_ADDRESS, SMBUS_IO_EXPANDER_INPUT_PORT1_CMD, 0, 0), &Status1);
+  /* SmbusInputPort0Info.InputPort0Raw = SmBusReadDataByte (SMBUS_LIB_ADDRESS(SMBUS_IO_EXPANDER_SLAVE_ADDRESS, SMBUS_IO_EXPANDER_INPUT_PORT0_CMD, 0, 0), &Status0); */
+  /* SmbusInputPort1Info.InputPort1Raw = SmBusReadDataByte (SMBUS_LIB_ADDRESS(SMBUS_IO_EXPANDER_SLAVE_ADDRESS, SMBUS_IO_EXPANDER_INPUT_PORT1_CMD, 0, 0), &Status1); */
 
-  if ((Status0 == EFI_SUCCESS) && (Status1 == EFI_SUCCESS)) {
-    BomId = (UINT8) ((SmbusInputPort0Info.InputPort0Fields.BomId << 2) | SmbusInputPort1Info.InputPort1Fields.BomId);
+  /* if ((Status0 == EFI_SUCCESS) && (Status1 == EFI_SUCCESS)) { */
+  /*   BomId = (UINT8) ((SmbusInputPort0Info.InputPort0Fields.BomId << 2) | SmbusInputPort1Info.InputPort1Fields.BomId); */
 
-    DEBUG ((DEBUG_INFO, "Raw data from Input Port 0 is 0x%x\n", SmbusInputPort0Info.InputPort0Raw));
-    DEBUG ((DEBUG_INFO, "Raw data from Input Port 1 is 0x%x\n", SmbusInputPort1Info.InputPort1Raw));
-    DEBUG ((DEBUG_INFO, "Fields.BoardId from Smbus Io expander is 0x%x\n", SmbusInputPort1Info.InputPort1Fields.BoardId));
-    DEBUG ((DEBUG_INFO, "Fields.BomId from Smbus Io expander is 0x%x\n", BomId));
-    DEBUG ((DEBUG_INFO, "Fields.FabId from Smbus Io expander is 0x%x\n", (UINT16) (SmbusInputPort0Info.InputPort0Fields.FabId)));
-    DEBUG ((DEBUG_INFO, "Fields.SpdPresent from Smbus Io expander is %x\n", (BOOLEAN) (SmbusInputPort0Info.InputPort0Fields.SpdPresent)));
+  /*   DEBUG ((DEBUG_INFO, "Raw data from Input Port 0 is 0x%x\n", SmbusInputPort0Info.InputPort0Raw)); */
+  /*   DEBUG ((DEBUG_INFO, "Raw data from Input Port 1 is 0x%x\n", SmbusInputPort1Info.InputPort1Raw)); */
+  /*   DEBUG ((DEBUG_INFO, "Fields.BoardId from Smbus Io expander is 0x%x\n", SmbusInputPort1Info.InputPort1Fields.BoardId)); */
+  /*   DEBUG ((DEBUG_INFO, "Fields.BomId from Smbus Io expander is 0x%x\n", BomId)); */
+  /*   DEBUG ((DEBUG_INFO, "Fields.FabId from Smbus Io expander is 0x%x\n", (UINT16) (SmbusInputPort0Info.InputPort0Fields.FabId))); */
+  /*   DEBUG ((DEBUG_INFO, "Fields.SpdPresent from Smbus Io expander is %x\n", (BOOLEAN) (SmbusInputPort0Info.InputPort0Fields.SpdPresent))); */
 
-    BoardId = SmbusInputPort1Info.InputPort1Fields.BoardId;
-  }
-  else {
-    DEBUG ((DEBUG_ERROR, "Failed to get Board ID from Smbus Io expander\n"));
-    return;
-  }
+  /*   BoardId = SmbusInputPort1Info.InputPort1Fields.BoardId; */
+  /* } */
+  /* else { */
+  /*   DEBUG ((DEBUG_ERROR, "Failed to get Board ID from Smbus Io expander\n")); */
+  /*   return; */
+  /* } */
+
+  BoardId = BoardIdAdlNLp5Rvp;
   switch (BoardId) {
     case BoardIdAdlNDdr5Crb:
       *PlatformId = PLATFORM_ID_ADL_N_DDR5_CRB;
       break;
     case BoardIdAdlPSDdr5Crb:
       *PlatformId = PLATFORM_ID_ADL_PS_DDR5_CRB;
+      break;
+    case BoardIdAdlNLp5Rvp:
+      *PlatformId = PLATFORM_ID_ADL_N_LPDDR5_RVP;
       break;
     default:
     break;

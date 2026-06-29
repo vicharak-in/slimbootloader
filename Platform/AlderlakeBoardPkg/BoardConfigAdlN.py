@@ -120,7 +120,7 @@ class Board(BaseBoard):
         self.STAGE2_FD_SIZE       = 0x001F0000
 
         self.PAYLOAD_SIZE         = 0x00030000
-        self.EPAYLOAD_SIZE        = 0x00240000
+        self.EPAYLOAD_SIZE        = 0x00040000
 
         self.OS_LOADER_FD_SIZE    = 0x0005E000
         self.OS_LOADER_FD_NUMBLK  = self.OS_LOADER_FD_SIZE // self.FLASH_BLOCK_SIZE
@@ -136,7 +136,7 @@ class Board(BaseBoard):
 
         if self.RELEASE_MODE and self.ENABLE_FAST_BOOT:
             self.STAGE1A_SIZE         = 0x00016000
-            self.STAGE1B_SIZE         = 0x000E0000
+            self.STAGE1B_SIZE         = 0x00030000
             self.STAGE2_SIZE          = 0x000C0000
             self.STAGE2_FD_SIZE       = 0x000F0000
             self.PAYLOAD_SIZE         = 0x00024000
@@ -193,7 +193,7 @@ class Board(BaseBoard):
         if self._SMBIOS_YAML_FILE:
             self.SIIPFW_SIZE += 0x1000
 
-        self.NON_REDUNDANT_SIZE   = 0x3BF000 + self.SIIPFW_SIZE
+        self.NON_REDUNDANT_SIZE   = 0x1BF000 + self.SIIPFW_SIZE
         self.NON_VOLATILE_SIZE    = 0x001000
         self.SLIMBOOTLOADER_SIZE  = (self.TOP_SWAP_SIZE + self.REDUNDANT_SIZE) * 2 + \
                                     self.NON_REDUNDANT_SIZE + self.NON_VOLATILE_SIZE
