@@ -173,13 +173,16 @@ GetBoardIdFromSmbus (
   /*   return; */
   /* } */
 
-  BoardId = BoardIdAdlNDdr5Crb;
+  BoardId = BoardIdAdlNLp5Rvp;
   switch (BoardId) {
     case BoardIdAdlNDdr5Crb:
       *PlatformId = PLATFORM_ID_ADL_N_DDR5_CRB;
       break;
     case BoardIdAdlPSDdr5Crb:
       *PlatformId = PLATFORM_ID_ADL_PS_DDR5_CRB;
+      break;
+    case BoardIdAdlNLp5Rvp:
+      *PlatformId = PLATFORM_ID_ADL_N_LPDDR5_RVP;
       break;
     default:
     break;
